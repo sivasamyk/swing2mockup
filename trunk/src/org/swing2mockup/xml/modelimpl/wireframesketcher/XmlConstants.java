@@ -9,6 +9,7 @@ public interface XmlConstants {
 	String WIDTH = "width";
 	String HEIGHT = "height";
 	String BUTTON = "button";	
+	String STATE = "state";
 	String TEXT = "text";	
 	String ICON = "icon";	
 	String ALIGNMENT = "alignment"; 

@@ -21,6 +21,14 @@ public class SplitPaneConverter implements ContainerConverter {
 	public Widget convertComponent(ModelFactory factory, Component comp) {
 		SplitPane sp = factory.createSplitPane();
 		JSplitPane pane = (JSplitPane)comp; 
+		if(pane.getOrientation() == JSplitPane.HORIZONTAL_SPLIT)
+		{
+			sp.setX(pane.getDividerLocation());
+		}
+		else 
+		{
+			sp.setY(pane.getDividerLocation());
+		}
 		sp.setOrientation(pane.getOrientation());
 		return sp;
 	}
