@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary How To convert your swing window to mockup
 =How To=
 
 The following are the steps required to convert your Swing Window to [http://wireframesketcher.com WireframeSketcher] mockup using Swing2Mockup
