@@ -16,7 +16,6 @@ import javax.swing.SwingUtilities;
 import org.swing2mockup.xml.model.ModelFactory;
 import org.swing2mockup.xml.model.Screen;
 import org.swing2mockup.xml.model.Widget;
-import org.swing2mockup.xml.modelimpl.wireframesketcher.ModelFactoryImpl;
 
 public class Converter {
 
@@ -63,10 +62,10 @@ public class Converter {
 	}
 
 	private void add(Widget widget, int x, int y, int width, int height) {
-		widget.setX(origin.x + x);
-		widget.setY(origin.y + y);
-		widget.setWidth(width);
-		widget.setHeight(height);
+		widget.setX(origin.x + x + widget.getX());
+		widget.setY(origin.y + y  + widget.getY());
+		widget.setWidth(width  + widget.getWidth());
+		widget.setHeight(height + widget.getHeight());
 		screen.addChild(widget);
 	}
 

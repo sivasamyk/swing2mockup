@@ -3,6 +3,8 @@ package org.swing2mockup.xml.modelimpl.wireframesketcher;
 import org.swing2mockup.xml.model.Widget;
 import org.swing2mockup.xml.modelimpl.DefaultXmlNode;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Attributes;
+
 public class WidgetImpl extends DefaultXmlNode implements Widget {
 
 	public WidgetImpl() {
@@ -15,31 +17,31 @@ public class WidgetImpl extends DefaultXmlNode implements Widget {
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		String height = getAttributes().get(XmlConstants.HEIGHT);
+		return height != null ? Integer.parseInt(height) : 0;
 	}
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		String width = getAttributes().get(XmlConstants.WIDTH);
+		return width != null ? Integer.parseInt(width) : 0;
 	}
 
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		String x = getAttributes().get(XmlConstants.X);
+		return x != null ? Integer.parseInt(x) : 0;
 	}
 
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		String y = getAttributes().get(XmlConstants.Y);
+		return y != null ? Integer.parseInt(y) : 0;
 	}
 
 	@Override
 	public void setEnabled(boolean enabled) {
-		// TODO Auto-generated method stub		
+		addAttribute(XmlConstants.STATE, enabled ? "normal" : "disabled");
 	}
 
 	@Override
