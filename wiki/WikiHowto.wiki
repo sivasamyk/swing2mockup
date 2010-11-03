@@ -12,7 +12,7 @@ The following are the steps required to convert your Swing Window to [http://wir
 e.g. If your actual application launch command is 
          `java -cp SwingSet2.jar SwingSet2 -lnf Metal`
 then change the command to
-         `java -cp SwingSet2.jar;swing2mockup-x.y.jar org.swing2mockup.main.Swing2Mockup -lnf Metal`
+         `java -cp SwingSet2.jar;swing2mockup-x.y.jar org.swing2mockup.main.Swing2Mockup SwingSet2 -lnf Metal`
 
 4) After the application is launched, highlight the window that has to be converted to mockup and press _Alt + Shift + F5_ to export the mockup XML to clipboard.
 
