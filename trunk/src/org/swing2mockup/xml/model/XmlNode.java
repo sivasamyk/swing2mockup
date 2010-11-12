@@ -10,6 +10,7 @@ public interface XmlNode {
 	List<XmlNode> getChildren();
 	Map<String,String> getAttributes();
 	String getName();
+	String getValue();
 	void addAttribute(String name,String value);
 	void addChild(XmlNode child);
 	Node getXmlNode(Document doc);	
