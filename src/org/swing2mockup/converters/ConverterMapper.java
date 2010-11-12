@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
@@ -45,6 +46,7 @@ public class ConverterMapper {
 	{
 		CONVERTER_MAP.put(JDialog.class, new DialogConverter());
 		CONVERTER_MAP.put(JFrame.class, new FrameConverter());
+		CONVERTER_MAP.put(JInternalFrame.class, new InternalFrameConverter());
 		CONVERTER_MAP.put(JTextField.class, new TextFieldConverter());
 		CONVERTER_MAP.put(JTextArea.class, new TextAreaConverter());
 		CONVERTER_MAP.put(JLabel.class, new LabelConverter());

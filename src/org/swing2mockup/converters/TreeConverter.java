@@ -1,6 +1,8 @@
 package org.swing2mockup.converters;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.JViewport;
 
 import org.swing2mockup.xml.model.Tree;
 
@@ -26,7 +28,18 @@ public class TreeConverter implements ComponentConverter<JTree> {
 	@Override
 	public org.swing2mockup.xml.model.Widget convertComponent(
 			org.swing2mockup.xml.model.ModelFactory factory, JTree comp) {
-		Tree tree = factory.createTree();
+		
+		boolean isParentScrollPane = comp.getParent() instanceof JViewport;
+		JScrollPane sp = null;
+		if(isParentScrollPane)
+		{
+			sp = (JScrollPane)((JViewport)comp.getParent()).getParent();
+		}
+		Tree tree = factory.createTree();	
+		if (sp.getVerticalScrollBar().isVisible()) {
+			tree.setVerticalScrollBar(true);
+			//tree.setWidth(sp.getVerticalScrollBar().getWidth());
+		}
 		Object root = comp.getModel().getRoot();
 		StringBuilder content = new StringBuilder();
 		convertTreeItem(root, content, 0, comp);
