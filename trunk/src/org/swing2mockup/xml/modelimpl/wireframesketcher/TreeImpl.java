@@ -12,5 +12,11 @@ public class TreeImpl extends WidgetImpl implements Tree {
 	public void setText(String text) {
 		addAttribute(XmlConstants.TEXT, text);
 	}
+	
+
+	@Override
+	public void setVerticalScrollBar(boolean isVScroll) {
+		addAttribute(XmlConstants.VSCROLLBAR, String.valueOf(isVScroll));	
+	}
 
 }
