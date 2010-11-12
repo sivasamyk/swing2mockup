@@ -15,7 +15,8 @@ public interface XmlConstants {
 	String ALIGNMENT = "alignment"; 
 	String BORDER = "border";
 	String VALUE = "value";	
-	String SELECTED = "selected";	
+	String SELECTED = "selected";
+	String VSCROLLBAR = "verticalScrollbar";
 	String POSITION = "position";	
 	String XSI_TYPE = "xsi:type";
 	String XMLNS_XSI = "xmlns:xsi";

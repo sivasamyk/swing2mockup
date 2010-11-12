@@ -18,4 +18,9 @@ public class TableImpl extends WidgetImpl implements Table {
 		addAttribute(XmlConstants.SELECTED, String.valueOf(row + 1));		
 	}
 
+	@Override
+	public void setVerticalScrollBar(boolean isVScroll) {
+		addAttribute(XmlConstants.VSCROLLBAR, String.valueOf(isVScroll));	
+	}
+
 }

@@ -14,6 +14,7 @@ import org.w3c.dom.Node;
 public class DefaultXmlNode implements XmlNode {
 
 	private String name;
+	private String value;
 	private List<XmlNode> children;
 	private Map<String, String> attributes;
 
@@ -46,23 +47,37 @@ public class DefaultXmlNode implements XmlNode {
 		return name;
 	}
 
-	
-	public Node getXmlNode(Document doc)
-	{
+	public Node getXmlNode(Document doc) {
 		Element node = doc.createElement(name);
 		for (String key : attributes.keySet()) {
 			String value = attributes.get(key);
 			if (value != null) {
-				Attr attr = doc.createAttribute(key);	
+				Attr attr = doc.createAttribute(key);
 				attr.setValue(value);
 				node.setAttributeNode(attr);
 			}
 		}
 		
+		if(value != null)
+		{
+			//Node textNode = doc.createTextNode(value);
+			node.setTextContent(value);
+		}
+
 		for (XmlNode child : children) {
 			node.appendChild(child.getXmlNode(doc));
-		}		
+		}			
+		
 		return node;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	@Override
+	public String getValue() {
+		return value;
 	}
 
 }

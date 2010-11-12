@@ -3,8 +3,6 @@ package org.swing2mockup.xml.modelimpl.wireframesketcher;
 import org.swing2mockup.xml.model.Widget;
 import org.swing2mockup.xml.modelimpl.DefaultXmlNode;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Attributes;
-
 public class WidgetImpl extends DefaultXmlNode implements Widget {
 
 	public WidgetImpl() {
