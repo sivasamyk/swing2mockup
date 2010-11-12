@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.swing2mockup.converters.Converter;
-import org.swing2mockup.xml.modelimpl.wireframesketcher.ModelFactoryImpl;
 
 /**
  * The main class for WireFrameSketcher Swing Spy plug-in.
@@ -47,27 +46,31 @@ public class Swing2Mockup {
 						keyEvent.isAltDown() && keyEvent.isShiftDown() &&
 						keyEvent.getID() == KeyEvent.KEY_PRESSED) {
 					Window window = getSelectedWindow(Frame.getWindows());
-					Converter converter = new Converter(window,new ModelFactoryImpl());
-					try
-					{
-					new ExportHandler(converter.getScreen());
-					
-					JOptionPane.showMessageDialog(window,							
-							"Window '"
-									+ getWindowTitle(window) 
-									+ "' was exported to clipboard in WireframeSketcher XML format. \n"
-									+ "Paste it directly into an existing screen or create "
-									+ "a new screen and specify the initial XML.",
-									"Swing2Mockup",JOptionPane.INFORMATION_MESSAGE);
-					}
-					catch(Exception e)
-					{
-						e.printStackTrace();
-						System.err.println("Cannot export the window :" + e.getMessage());
-					}
-				}
+					convertToWireframeSketcher(window);
+				}				
 			}
 
+			private void convertToWireframeSketcher(Window window) {
+				Converter converter = new Converter(window,new 
+						org.swing2mockup.xml.modelimpl.wireframesketcher.ModelFactoryImpl());
+				try
+				{
+				new ExportHandler(converter.getScreen());
+				
+				JOptionPane.showMessageDialog(window,							
+						"Window '"
+								+ getWindowTitle(window) 
+								+ "' was exported to clipboard in WireframeSketcher XML format. \n"
+								+ "Paste it directly into an existing screen or create "
+								+ "a new screen and specify the initial XML.",
+								"Swing2Mockup",JOptionPane.INFORMATION_MESSAGE);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					System.err.println("Cannot export the window :" + e.getMessage());
+				}
+			}					
 		}, AWTEvent.KEY_EVENT_MASK);
 	}
 	
