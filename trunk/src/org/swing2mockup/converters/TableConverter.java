@@ -1,6 +1,8 @@
 package org.swing2mockup.converters;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JViewport;
 
 import org.swing2mockup.xml.model.Table;
 
@@ -21,9 +23,28 @@ public class TableConverter implements ComponentConverter<JTable> {
 			content.append('\n');
 		}
 
+		boolean isParentScrollPane = comp.getParent() instanceof JViewport;
+		JScrollPane sp = null;
+		if(isParentScrollPane)
+		{
+			sp = (JScrollPane)((JViewport)comp.getParent()).getParent();
+			if (sp.getVerticalScrollBar().isVisible()) {
+				table.setVerticalScrollBar(true);
+				table.setWidth(sp.getVerticalScrollBar().getWidth());
+			}
+		}
+		
+		
 		int rowCount = comp.getRowCount();
-		for (int i = 0; i < rowCount; i++) {
-			for (int j = 0; j < colCount; j++) {
+		for (int i = 0; i < rowCount; i++) {		
+			if(sp != null)
+			{
+				if(!sp.getVisibleRect().contains(comp.getCellRect(i, 0, true)))
+				{
+					continue;
+				}
+			}
+			for (int j = 0; j < colCount; j++) {				
 				content.append(comp.getValueAt(i, j).toString());
 				if (j < colCount - 1)
 					content.append(',');

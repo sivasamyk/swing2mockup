@@ -5,7 +5,6 @@ import java.awt.Container;
 
 import javax.swing.JComponent;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import org.swing2mockup.xml.model.Panel;
@@ -20,17 +19,18 @@ public class PanelConverter implements ContainerConverter {
 	@Override
 	public org.swing2mockup.xml.model.Widget convertComponent(
 			org.swing2mockup.xml.model.ModelFactory factory, Component comp) {
-		Panel widget = factory.createPanel();
+		Panel widget = null;
 		JComponent jComp = (JComponent)comp;
-		if(jComp.getBorder() instanceof TitledBorder)
-		{			
-			widget.setTitle(((TitledBorder)jComp.getBorder()).getTitle());
-		}
-		else
-		{		
-			Border border = ((JComponent)comp).getBorder();
-			widget.setBorder(border != null && !(border instanceof EmptyBorder));
-		}
+		Border border = jComp.getBorder();
+		if (border != null && (border instanceof TitledBorder)) {
+			widget = factory.createPanel();		
+			widget.setTitle(((TitledBorder) jComp.getBorder()).getTitle());
+//			if (jComp.getBorder() instanceof TitledBorder) {
+//				widget.setTitle(((TitledBorder) jComp.getBorder()).getTitle());
+//			} else {				
+//				widget.setBorder(true);
+//			}			
+		}		
 		return widget;
 	}
 }

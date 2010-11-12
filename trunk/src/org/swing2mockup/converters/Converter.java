@@ -24,10 +24,10 @@ public class Converter {
 	private Point origin = new Point(25, 25);
 	private final ModelFactory factory;
 
-	public Converter(Window window,ModelFactory factory) {
+	public Converter(Window window, ModelFactory factory) {
 		this.window = window;
 		this.factory = factory;
-		this.screen = factory.createScreen();		
+		this.screen = factory.createScreen();
 		convert(window);
 	}
 
@@ -36,7 +36,7 @@ public class Converter {
 	}
 
 	private void convert(Component comp) {
-		
+
 		if (comp == null || !comp.isVisible())
 			return;
 
@@ -45,10 +45,12 @@ public class Converter {
 			return;
 
 		ComponentConverter compConverter = ConverterMapper
-				.getComponentConverter(comp);		
+				.getComponentConverter(comp);
 		if (compConverter != null) {
 			Widget widget = compConverter.convertComponent(factory, comp);
-			add(widget, comp);
+			if (widget != null) {
+				add(widget, comp);
+			}
 			if (compConverter instanceof ContainerConverter) {
 				Component children[] = ((ContainerConverter) compConverter)
 						.getChildren(((Container) comp));
@@ -63,8 +65,8 @@ public class Converter {
 
 	private void add(Widget widget, int x, int y, int width, int height) {
 		widget.setX(origin.x + x + widget.getX());
-		widget.setY(origin.y + y  + widget.getY());
-		widget.setWidth(width  + widget.getWidth());
+		widget.setY(origin.y + y + widget.getY());
+		widget.setWidth(width + widget.getWidth());
 		widget.setHeight(height + widget.getHeight());
 		screen.addChild(widget);
 	}
@@ -76,7 +78,7 @@ public class Converter {
 	private void add(Widget widget, Component comp, int dx, int dy) {
 		Rectangle bounds = comp.getBounds();
 		int x = bounds.x, y = bounds.y;
-		Point location = bounds.getLocation();			
+		Point location = bounds.getLocation();
 		if (!(comp instanceof Window)) {
 			SwingUtilities.convertPointToScreen(location, comp.getParent());
 		}
@@ -102,7 +104,7 @@ public class Converter {
 	private void add(Widget widget, Container parent, Rectangle bounds, int dx,
 			int dy) {
 		Point location = bounds.getLocation();
-		SwingUtilities.convertPointToScreen(location,parent);
+		SwingUtilities.convertPointToScreen(location, parent);
 		int x = location.x;
 		int y = location.y;
 		x -= window.getBounds().x;
