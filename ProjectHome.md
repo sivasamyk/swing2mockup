@@ -1,0 +1,1 @@
+This project aims at converting any Java Swing based application back to mock up screen. Initially the support is provided for converting a swing window to [WireFrameSketcher](http://wireframesketcher.com/) mockup format. Please see the [Wiki](http://code.google.com/p/swing2mockup/w/list) section for more information.
